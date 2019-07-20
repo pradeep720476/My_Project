@@ -1,15 +1,26 @@
 package com.mypharamacy.repository;
 
-import com.mypharamacy.entity.Presciption;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-public class CustomerRepositoryImpl implements CustomerRepository {
+import com.mypharamacy.entity.Presciption;
+import com.mypharamacy.entity.User;
+@Repository("customerRepository")
+public class CustomerRepositoryImpl implements CustomerRepository{
+	@Autowired
+	private RegisterUserRepository registerUserRepository;
 
 	@Override
 	public int upload(Presciption presciption) {
 
-		// DB operation;
 
-		return 0;
+		return 0; //registerUserRepository.save(presciption);
+	}
+
+	@Override
+	public User save(User pUser) {
+		// TODO Auto-generated method stub
+		return registerUserRepository.save(pUser);
 	}
 
 }

@@ -3,11 +3,13 @@ package com.mypharamacy.service;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mypharamacy.entity.Presciption;
+import com.mypharamacy.entity.User;
 import com.mypharamacy.repository.CustomerRepository;
-
+@Service("customerService")
 public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
@@ -30,6 +32,20 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 
 		return 0;
+	}
+	
+	@Override
+	public void registerUser(User pUser) {
+		//RegisterUserRepo registerUserRepo = new 
+		boolean isUserExists = false;//registerUserRepo.isExist(pUser);
+		if(!isUserExists) {
+//			pUser.setCustomerid(1);
+			customerRepository.save(pUser);
+		}
+		else {
+			System.out.println("Data Already available");
+		}
+		
 	}
 
 }
