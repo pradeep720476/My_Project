@@ -1,0 +1,12 @@
+create table pharmacydetails(
+pharmacy_id int NOT NULL primary key auto_increment,
+pharmacy_name varchar(255),
+created_by varchar(255),
+phone_no long,
+zip_code long,
+latitude varchar(255),
+longitude varchar(255),
+user_name varchar(255),
+license_number varchar(255),
+password varchar(255)
+);
