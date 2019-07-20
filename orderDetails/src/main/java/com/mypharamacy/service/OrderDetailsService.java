@@ -13,4 +13,5 @@ public interface OrderDetailsService {
     public Order updateOrder(Order user, long l);
     public void deleteOrderById(long id);
     public Order updatePartially(Order order, long id);
+    public int updateOrderStatus(Order pOrder);
 }

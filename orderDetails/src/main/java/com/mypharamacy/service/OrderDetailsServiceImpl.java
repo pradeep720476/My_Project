@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mypharamacy.controller.Constant;
 import com.mypharamacy.entity.Order;
 import com.mypharamacy.repository.OrderRepository;
 
@@ -48,4 +49,9 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
     	order.setTotalAmount(order.getTotalAmount());
         return orderRepository.save(order);
     }
+
+	@Override
+	public int updateOrderStatus(Order pOrder) {
+		return orderRepository.updateOrderStatus(Constant.APPROVED, pOrder.getCustomerId(), pOrder.getOrderid(),Constant.NAPPROVED);
+	}
 }

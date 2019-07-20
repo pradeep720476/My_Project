@@ -84,4 +84,18 @@ public class OrderDetailsController {
 		Order orderUpdatePartially = orderService.updatePartially(currentOrder, id);
 		return new ResponseEntity<Order>(orderUpdatePartially, HttpStatus.OK);
 	}
+	
+	@PostMapping("updatestatus")
+	public ResponseEntity<Object> addUser(@RequestBody Order pOrder) {
+			int updated = orderService.updateOrderStatus(pOrder);
+			HttpHeaders headers = new HttpHeaders();
+			if(updated >0 ) {
+				pOrder.setOrderStatus(Constant.APPROVED);
+				return new ResponseEntity<Object>(pOrder,headers, HttpStatus.OK);
+			}
+			else {
+				return new ResponseEntity<Object>("STATUS UPDATION FAILED",headers, HttpStatus.NOT_MODIFIED);
+			}
+			 
+	}
 }

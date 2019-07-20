@@ -10,8 +10,11 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 @Entity()
 @Table(name = "ordersdetails")
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Order {
 
 	@Id
