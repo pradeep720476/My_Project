@@ -18,20 +18,17 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class Order {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long orderid;
-	
-	
-	private Long orderNumber;
-	
+
 	private Long customerId;
-	
+
 	private String orderDate;
-	
+
 	private String documentId;
-	
+
 	private Double totalAmount;
-	
+
 	@ColumnDefault("NAPPROVED")
 	private String orderStatus;
 
@@ -41,14 +38,6 @@ public class Order {
 
 	public void setOrderid(Long orderid) {
 		this.orderid = orderid;
-	}
-
-	public Long getOrderNumber() {
-		return orderNumber;
-	}
-
-	public void setOrderNumber(Long orderNumber) {
-		this.orderNumber = orderNumber;
 	}
 
 	public Long getCustomerId() {
