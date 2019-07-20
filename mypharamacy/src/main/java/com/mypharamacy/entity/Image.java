@@ -1,14 +1,22 @@
 package com.mypharamacy.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.Table;
 
-public class Presciption {
+@Entity
+@Table(name = "prescription")
+public class Image {
 
+	@Id
+	@Column(name = "DocId")
 	private int docId;
 	@Lob
 	private byte[] image;
 
-	public Presciption(byte[] image) {
+	public Image(byte[] image) {
 		super();
 		this.image = image;
 	}

@@ -8,7 +8,7 @@ import com.mypharamacy.entity.User;
 
 public interface CustomerService {
 	
-	public int upload(MultipartFile file);
+	public int upload(MultipartFile file) throws Exception;
 	public void registerUser(User pUser);
 
 }
