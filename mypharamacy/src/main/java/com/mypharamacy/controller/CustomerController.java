@@ -57,17 +57,45 @@ public class CustomerController {
 	}
 
 	@PostMapping("/register")
-	public ResponseEntity<Void> addUser(@RequestBody User pUser) {
-		// IResigesterUserService registerUserService = new RegisterUserService();
-		try {
-			customerService.registerUser(pUser);
-			HttpHeaders headers = new HttpHeaders();
-			return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-		}
-
+	public ResponseEntity<Object> addUser(@RequestBody User pUser) {
+		
+		int cusId = isUserValid(pUser);
+		
+		 if(cusId > 0) {
+			 return new ResponseEntity<Object>("USER ALREADY EXIST",HttpStatus.CONFLICT);
+		 }
+		 else {
+			 customerService.registerUser(pUser);
+			 cusId = isUserValid(pUser);
+			 HttpHeaders headers = new HttpHeaders();
+			 pUser.setCustomerid(cusId);
+             return new ResponseEntity<Object>(pUser,headers, HttpStatus.CREATED);
+		 }
+	}
+	
+	@PostMapping("/validate")
+	public ResponseEntity<Object> validateUser(@RequestBody User pUser){
+		 HttpHeaders headers = new HttpHeaders();
+		
+		 int cusId =   isUserValid(pUser);
+		 if(cusId > 0) {
+			 pUser.setCustomerid(cusId);
+			 return new ResponseEntity<Object>(pUser,headers, HttpStatus.OK);
+		 }
+		 else {
+			 return new ResponseEntity<Object>("INVALID CREDENTIALS",HttpStatus.BAD_REQUEST);
+		 }
+	}
+	
+	private int isUserValid(User pUser) {
+		 Object  present =  customerService.validate(pUser);
+		 if(null != present) {
+			 return  Integer.parseInt(present.toString());	 
+		 }
+		 else {
+			 return 0;
+		 }
+		 
 	}
 
 }

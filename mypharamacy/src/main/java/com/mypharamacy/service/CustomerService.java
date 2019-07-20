@@ -10,5 +10,6 @@ public interface CustomerService {
 	
 	public int upload(MultipartFile file) throws Exception;
 	public void registerUser(User pUser);
+	public Object validate(User pUser);
 
 }
