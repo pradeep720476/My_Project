@@ -15,6 +15,7 @@ public class Image {
 	private int docId;
 	@Lob
 	private byte[] image;
+	private char status;
 
 	public Image(byte[] image) {
 		super();
@@ -35,6 +36,14 @@ public class Image {
 
 	public void setImage(byte[] image) {
 		this.image = image;
+	}
+
+	public char getStatus() {
+		return status;
+	}
+
+	public void setStatus(char status) {
+		this.status = status;
 	}
 
 }

@@ -21,6 +21,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 		try {
 			Image presciption = new Image(imageFile.getBytes());
+			presciption.setStatus('N');
 			customerRepository.upload(presciption);
 		} catch (IOException e) {
 			throw new Exception("Error while imaging upload");
