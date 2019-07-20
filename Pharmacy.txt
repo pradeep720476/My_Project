@@ -52,7 +52,6 @@ updatedBy varchar(255)
    
 );
 
-drop table prescription;
  CREATE TABLE prescription (
     doc_id int NOT NULL auto_increment,
     image MEDIUMBLOB,

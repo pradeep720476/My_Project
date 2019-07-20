@@ -19,12 +19,6 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public int upload(MultipartFile imageFile) throws Exception {
 
-		String filename = imageFile.getOriginalFilename();
-
-		if (filename.contains("..")) {
-			// throw exception
-		}
-
 		try {
 			Image presciption = new Image(imageFile.getBytes());
 			customerRepository.upload(presciption);
