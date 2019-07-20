@@ -22,24 +22,22 @@ public class CustomerServiceImpl implements CustomerService {
 		try {
 			Image presciption = new Image(imageFile.getBytes());
 			presciption.setStatus('N');
-			customerRepository.upload(presciption);
+			return customerRepository.upload(presciption).getDocId();
 		} catch (IOException e) {
 			throw new Exception("Error while imaging upload");
 		}
 
-		return 0;
 	}
 
 	@Override
 	public void registerUser(User pUser) {
-		boolean isUserExists = false;//registerUserRepo.isExist(pUser);
-		if(!isUserExists) {
+		boolean isUserExists = false;// registerUserRepo.isExist(pUser);
+		if (!isUserExists) {
 			customerRepository.save(pUser);
-		}
-		else {
+		} else {
 			System.out.println("Data Already available");
 		}
-		
+
 	}
 
 	@Override

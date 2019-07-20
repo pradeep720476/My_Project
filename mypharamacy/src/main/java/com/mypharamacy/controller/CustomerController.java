@@ -34,18 +34,18 @@ public class CustomerController {
 	 */
 	@PostMapping(value = "/upload-preception")
 	public ResponseEntity<Object> uploadImage(@RequestBody MultipartFile imageFile) {
-
+		Integer docId = null;
 		try {
 			String filename = imageFile.getOriginalFilename();
 			if (filename.contains("..")) {
 				new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
 			}
-			customerService.upload(imageFile);
+			docId = customerService.upload(imageFile);
+
 		} catch (Exception excpetion) {
 			new ResponseEntity<Object>(excpetion.getMessage(), HttpStatus.FORBIDDEN);
 		}
-
-		return new ResponseEntity<Object>(HttpStatus.OK);
+		return new ResponseEntity<Object>(docId, HttpStatus.FORBIDDEN);
 
 	}
 
@@ -58,44 +58,41 @@ public class CustomerController {
 
 	@PostMapping("/register")
 	public ResponseEntity<Object> addUser(@RequestBody User pUser) {
-		
+
 		int cusId = isUserValid(pUser);
-		
-		 if(cusId > 0) {
-			 return new ResponseEntity<Object>("USER ALREADY EXIST",HttpStatus.CONFLICT);
-		 }
-		 else {
-			 customerService.registerUser(pUser);
-			 cusId = isUserValid(pUser);
-			 HttpHeaders headers = new HttpHeaders();
-			 pUser.setCustomerid(cusId);
-             return new ResponseEntity<Object>(pUser,headers, HttpStatus.CREATED);
-		 }
+
+		if (cusId > 0) {
+			return new ResponseEntity<Object>("USER ALREADY EXIST", HttpStatus.CONFLICT);
+		} else {
+			customerService.registerUser(pUser);
+			cusId = isUserValid(pUser);
+			HttpHeaders headers = new HttpHeaders();
+			pUser.setCustomerid(cusId);
+			return new ResponseEntity<Object>(pUser, headers, HttpStatus.CREATED);
+		}
 	}
-	
+
 	@PostMapping("/validate")
-	public ResponseEntity<Object> validateUser(@RequestBody User pUser){
-		 HttpHeaders headers = new HttpHeaders();
-		
-		 int cusId =   isUserValid(pUser);
-		 if(cusId > 0) {
-			 pUser.setCustomerid(cusId);
-			 return new ResponseEntity<Object>(pUser,headers, HttpStatus.OK);
-		 }
-		 else {
-			 return new ResponseEntity<Object>("INVALID CREDENTIALS",HttpStatus.BAD_REQUEST);
-		 }
+	public ResponseEntity<Object> validateUser(@RequestBody User pUser) {
+		HttpHeaders headers = new HttpHeaders();
+
+		int cusId = isUserValid(pUser);
+		if (cusId > 0) {
+			pUser.setCustomerid(cusId);
+			return new ResponseEntity<Object>(pUser, headers, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Object>("INVALID CREDENTIALS", HttpStatus.BAD_REQUEST);
+		}
 	}
-	
+
 	private int isUserValid(User pUser) {
-		 Object  present =  customerService.validate(pUser);
-		 if(null != present) {
-			 return  Integer.parseInt(present.toString());	 
-		 }
-		 else {
-			 return 0;
-		 }
-		 
+		Object present = customerService.validate(pUser);
+		if (null != present) {
+			return Integer.parseInt(present.toString());
+		} else {
+			return 0;
+		}
+
 	}
 
 }
