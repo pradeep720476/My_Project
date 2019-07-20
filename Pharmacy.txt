@@ -1,0 +1,66 @@
+
+
+  
+  
+  create table register(
+id int  NOT NULL primary key,
+email varchar(255),
+name varchar(255),
+password varchar(255),
+username varchar(255)
+
+);
+create table customers(
+customerid int NOT NULL primary key,
+email varchar(255),
+customername varchar(255),
+address varchar(255),
+phno varchar(255),
+zipCode varchar(255),
+longitude varchar(255),
+latitude varchar(255),
+location varchar(255)
+);
+
+create table pharmacy(
+pharmacyid int NOT NULL primary key,
+pharmacyName varchar(255),
+CreatedBy varchar(255),
+CreatedDate date,
+phno varchar(255),
+zipCode varchar(255),
+longitude varchar(255),
+latitude varchar(255),
+updatedBy varchar(255)
+
+);
+ create table inventory(
+ inventoryid int NOT NULL primary key,
+ medicinename  varchar(255),
+ quantity  varchar(255),
+
+  amount  varchar(255)
+  );
+
+  CREATE TABLE Orders (
+    OrderID int NOT NULL primary key,
+    OrderNumber int NOT NULL,
+    CustomerID int,
+	OrderDate   varchar(255), 
+	DocumentId varchar(255),
+	TotalAmount varchar(255)
+   
+);
+ CREATE TABLE prescription (
+    DocId int NOT NULL ,
+    image blob,
+	customerId int,
+	PRIMARY KEY (DocId),
+    FOREIGN KEY (customerId) REFERENCES customers(customerId)
+   
+);
+create table medicine(
+ medicineId int NOT NULL primary key,
+ medicineName  varchar(255),
+ amount varchar(255)
+ )
