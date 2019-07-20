@@ -1,0 +1,7 @@
+---
+applications:
+- name: mypharmacy
+  memory: 768M
+  instances: 1
+  host: mypharmacy-table9
+  path: target/mypharamacy-0.0.1-SNAPSHOT.jar

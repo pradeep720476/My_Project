@@ -3,7 +3,7 @@
   
   
   create table register(
-id int  NOT NULL primary key,
+id int  NOT NULL primary key auto_increment,
 email varchar(255),
 name varchar(255),
 password varchar(255),
@@ -51,11 +51,12 @@ updatedBy varchar(255)
 	TotalAmount varchar(255)
    
 );
+
  CREATE TABLE prescription (
-    DocId int NOT NULL ,
-    image blob,
+    doc_id int NOT NULL auto_increment,
+    image MEDIUMBLOB,
 	customerId int,
-	PRIMARY KEY (DocId),
+	PRIMARY KEY (doc_id),
     FOREIGN KEY (customerId) REFERENCES customers(customerId)
    
 );
