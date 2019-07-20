@@ -26,4 +26,17 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 		return registerUserRepository.save(pUser);
 	}
 
+	@Override
+	public User validate(User pUser) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object isUserExist(String customername) {
+		 
+		return  registerUserRepository.isUserExist(customername);
+	}
+
+
 }

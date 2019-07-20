@@ -32,15 +32,19 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public void registerUser(User pUser) {
-		// RegisterUserRepo registerUserRepo = new
-		boolean isUserExists = false;// registerUserRepo.isExist(pUser);
-		if (!isUserExists) {
-//			pUser.setCustomerid(1);
+		boolean isUserExists = false;//registerUserRepo.isExist(pUser);
+		if(!isUserExists) {
 			customerRepository.save(pUser);
-		} else {
+		}
+		else {
 			System.out.println("Data Already available");
 		}
+		
+	}
 
+	@Override
+	public Object validate(User pUser) {
+		return customerRepository.isUserExist(pUser.getCustomername());
 	}
 
 }
