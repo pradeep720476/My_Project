@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class Image {
 
 	@Id
-	@Column(name = "DocId")
+	@Column(name = "doc_id")
 	private int docId;
 	@Lob
 	private byte[] image;
