@@ -52,6 +52,6 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
 
 	@Override
 	public int updateOrderStatus(Order pOrder) {
-		return orderRepository.updateOrderStatus(Constant.APPROVED, pOrder.getCustomerId(), pOrder.getOrderid(),Constant.NAPPROVED);
+		return orderRepository.updateOrderStatus(Constant.APPROVED, pOrder.getCustomerId(), pOrder.getOrderId(),Constant.NAPPROVED);
 	}
 }

@@ -1,7 +1,5 @@
 package com.mypharamacy.entity;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +17,7 @@ public class Order {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long orderid;
+	private Long orderId;
 
 	private Long customerId;
 
@@ -32,12 +30,12 @@ public class Order {
 	@ColumnDefault("NAPPROVED")
 	private String orderStatus;
 
-	public Long getOrderid() {
-		return orderid;
+	public Long getOrderId() {
+		return orderId;
 	}
 
-	public void setOrderid(Long orderid) {
-		this.orderid = orderid;
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
 	}
 
 	public Long getCustomerId() {

@@ -43,7 +43,7 @@ public class OrderDetailsController {
 		// System.out.println("Creating Order "+order.getOrderId());
 		orderService.createOrder(order);
 		HttpHeaders headers = new HttpHeaders();
-		headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand(order.getOrderid()).toUri());
+		headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand(order.getOrderId()).toUri());
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 
@@ -57,11 +57,11 @@ public class OrderDetailsController {
 	@PutMapping(value = "/update", headers = "Accept=application/json")
 	public ResponseEntity<String> updateUser(@RequestBody Order currentOrder) {
 		System.out.println("sd");
-		Order order = orderService.findOrderById(currentOrder.getOrderid());
+		Order order = orderService.findOrderById(currentOrder.getOrderId());
 		if (order == null) {
 			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 		}
-		orderService.updateOrder(currentOrder, currentOrder.getOrderid());
+		orderService.updateOrder(currentOrder, currentOrder.getOrderId());
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}
 
