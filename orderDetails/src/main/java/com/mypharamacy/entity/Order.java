@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ColumnDefault;
+
 @Entity()
 @Table(name = "ordersdetails")
 public class Order {
@@ -26,6 +28,9 @@ public class Order {
 	private String documentId;
 	
 	private Double totalAmount;
+	
+	@ColumnDefault("NAPPROVED")
+	private String orderStatus;
 
 	public Long getOrderid() {
 		return orderid;
@@ -73,6 +78,14 @@ public class Order {
 
 	public void setTotalAmount(Double totalAmount) {
 		this.totalAmount = totalAmount;
+	}
+
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 
 }
